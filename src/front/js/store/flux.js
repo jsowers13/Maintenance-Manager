@@ -14,7 +14,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           initial: "white",
         },
       ],
-      token: null,
+      token: JSON.parse(sessionStorage.getItem("token")) || [],
+      activeUser: JSON.parse(sessionStorage.getItem("activeUser")) || null,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -47,6 +48,84 @@ const getState = ({ getStore, getActions, setStore }) => {
 
         //reset the global store
         setStore({ demo: demo });
+      },
+      getActiveUser: async (email) => {
+        try {
+          const res = await fetch(
+            `${process.env.BACKEND_URL}/api/user/active`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email }),
+            }
+          );
+          const activeUser = await res.json();
+          setStore({ activeUser: activeUser.email });
+          sessionStorage.setItem("activeUser", activeUser.email);
+        } catch (error) {
+          throw Error("Wrong email or password");
+        }
+      },
+      login: async (email, password) => {
+        try {
+          const res = await fetch(process.env.BACKEND_URL + "/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          });
+          if (res.ok) {
+            const token = await res.json();
+            sessionStorage.setItem("token", JSON.stringify(token));
+            console.log("The response is ok", res);
+            getActions().getActiveUser(email);
+            // navigate("/demo");
+
+            return true;
+          } else {
+            throw "Something went wrong";
+          }
+        } catch (error) {
+          throw Error("Wrong email or password");
+        }
+      },
+      signup: async (
+        email,
+        password,
+
+        setMessageState
+      ) => {
+        console.log(email);
+
+        try {
+          const res = await fetch(`${process.env.BACKEND_URL}/api/user`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+              email,
+              password,
+            }),
+          });
+          if (res.ok) {
+            const token = await res.json();
+
+            sessionStorage.setItem("token", JSON.stringify(token));
+            console.log("The response is ok", res);
+            getActions().getActiveUser(email);
+
+            return true;
+          } else {
+            throw "Something went wrong";
+          }
+        } catch (error) {
+          throw Error("Something went wrong");
+        }
       },
     },
   };
