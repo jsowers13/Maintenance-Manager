@@ -116,7 +116,7 @@ export const LandingPage = () => {
         </div>
         <div
           class="tab-pane fade"
-          id="pills-new-WO"
+          id="pills-newWO"
           role="tabpanel"
           aria-labelledby="pills-newWO-tab"
         >
