@@ -13,7 +13,7 @@ export const Home = () => {
       <div className="card col">
         <div className="card-header text-center">Maintenance Manager</div>
         <div className="card-body">
-          {!store.activeUser ? <Login /> : <LandingPage />}
+          {store.activeUser ? <Login /> : <LandingPage />}
         </div>
       </div>
 

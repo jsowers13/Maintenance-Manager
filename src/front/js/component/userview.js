@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
+import { AddWorkOrder } from "./addworkorder";
 
 export const LandingPage = () => {
   return (
@@ -81,9 +82,9 @@ export const LandingPage = () => {
           </button>
         </li>
       </ul>
-      <div class="tab-content" id="pills-tabContent">
+      <div className="tab-content" id="pills-tabContent">
         <div
-          class="tab-pane fade show active"
+          className="tab-pane fade show active"
           id="pills-mainMenu"
           role="tabpanel"
           aria-labelledby="pills-mainMenu-tab"
@@ -91,7 +92,7 @@ export const LandingPage = () => {
           Main Menu Content
         </div>
         <div
-          class="tab-pane fade"
+          className="tab-pane fade"
           id="pills-myWO"
           role="tabpanel"
           aria-labelledby="pills-myWO-tab"
@@ -99,7 +100,7 @@ export const LandingPage = () => {
           My Work Order Content
         </div>
         <div
-          class="tab-pane fade"
+          className="tab-pane fade"
           id="pills-unassigned"
           role="tabpanel"
           aria-labelledby="pills-unassigned-tab"
@@ -107,7 +108,7 @@ export const LandingPage = () => {
           Unassigned Content
         </div>
         <div
-          class="tab-pane fade"
+          className="tab-pane fade"
           id="pills-completed"
           role="tabpanel"
           aria-labelledby="pills-completed-tab"
@@ -115,18 +116,15 @@ export const LandingPage = () => {
           Completed Content
         </div>
         <div
-          class="tab-pane fade"
+          className="tab-pane fade"
           id="pills-newWO"
           role="tabpanel"
           aria-labelledby="pills-newWO-tab"
         >
           New Work Order Content
+          <AddWorkOrder />
         </div>
       </div>
-      <table className="table">
-        <thead></thead>
-        <tbody></tbody>
-      </table>
     </div>
   );
 };
