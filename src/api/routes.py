@@ -82,7 +82,7 @@ def get_active_user():
     single_user = User.query.filter_by(email = body["email"]).first()
     print(single_user)
 
-    return jsonify(single_user.serialize()), 200
+    return jsonify(single_user.serialize()), 201
 
 # @api.route('/property', methods=['GET'])
 # def get_all_properties():
@@ -98,4 +98,28 @@ def get_all_work_orders():
 
     return jsonify(all_work_orders), 200
 
+@api.route('/workorder/<id>', methods=['GET'])
+def get_work_order_by_id(id):
+    work_order = WorkOrder.query.get(id)
+
+    return jsonify(work_order.serialize()), 200
+
+@api.route('/workorder', methods=['POST'])
+def create_work_order():
+    body = request.get_json()
+    title = body["title"]
+    description = body["description"]
+    category = body["category"]
+    access_notes = body["access_notes"]
+    entry_allowed = body["entry_allowed"]
+    bill_to_customer = body["bill_to_customer"]
+    maintenance_notes = body["maintenance_notes"]
+    status = body["status"]
+
+    work_order = WorkOrder(title=title, description=description, category=category, access_notes=access_notes, entry_allowed=entry_allowed, bill_to_customer=bill_to_customer, maintenance_notes=maintenance_notes, status=status)
+
+    db.session.add(work_order)
+    db.session.commit()
+
+    return jsonify(work_order.serialize()), 201
 

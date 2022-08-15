@@ -127,6 +127,43 @@ const getState = ({ getStore, getActions, setStore }) => {
           throw Error("Something went wrong");
         }
       },
+      createWorkOrder: async (
+        title,
+        description,
+        category,
+        access_notes,
+        entry_allowed,
+        bill_to_customer,
+        maintenance_notes,
+        status
+      ) => {
+        try {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/workorder", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title,
+              description,
+              category,
+              access_notes,
+              entry_allowed,
+              bill_to_customer,
+              maintenance_notes,
+              status,
+            }),
+          });
+          if (resp.ok) {
+            alert("Work Order Created Successfully");
+            return true;
+          } else {
+            throw "Something went wrong";
+          }
+        } catch (error) {
+          return "Unable to Create Work Order", error;
+        }
+      },
     },
   };
 };

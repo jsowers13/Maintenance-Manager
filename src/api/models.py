@@ -28,4 +28,17 @@ class WorkOrder(db.Model):
     bill_to_customer = db.Column(db.Boolean, default=False, nullable=False)
     maintenance_notes = db.Column(db.String(1000), unique=False, nullable=True)
     status = db.Column(db.String(250), unique=False, nullable=False)
+
+    def serialize(self):
+        return{
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "category": self.category,
+            "access_notes": self.access_notes,
+            "entry_allowed": self.entry_allowed,
+            "bill_to_customer": self.bill_to_customer,
+            "maintenance_notes": self.maintenance_notes,
+            "status": self.status
+        }
     
