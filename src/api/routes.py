@@ -84,11 +84,18 @@ def get_active_user():
 
     return jsonify(single_user.serialize()), 200
 
-@api.route('/property', methods=['GET'])
-def get_all_properties():
-    properties = Property.query.all()
-    all_properties = list(map(lambda camp: camp.serialize(), properties))
+# @api.route('/property', methods=['GET'])
+# def get_all_properties():
+#     properties = Property.query.all()
+#     all_properties = list(map(lambda camp: camp.serialize(), properties))
 
-    return jsonify(all_properties), 200
+#     return jsonify(all_properties), 200
+
+@api.route('/workorder', methods=['GET'])
+def get_all_work_orders():
+    work_orders = WorkOrder.query.all()
+    all_work_orders= list(map(lambda workorder: workorder.serialize(), work_orders))
+
+    return jsonify(all_work_orders), 200
 
 

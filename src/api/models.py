@@ -18,29 +18,6 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-# class Property(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(120), unique=True, nullable=False)
-#     address = db.Column(db.String(120), unique=True, nullable=False)
-#     phone_number = db.Column(db.String(120), unique=True, nullable=False)
-#     locations = db.relationship('Location', backref='property')
-#     workOrders = db.relationship('WorkOrder', backref='property')
-
-#     def serialize(self):
-#         return{
-#             "id": self.id,
-#             "name": self.name,
-#             "address": self.address,
-#             "phone_number": self.phone_number,
-            
-#         }
-
-# class Location(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String(120), unique=True, nullable=False)
-#     property_id = db.Column(db.Integer, db.ForeignKey('property.id'))
-#     workOrders = db.relationship('WorkOrder', backref='location')
-
 class WorkOrder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), unique=False, nullable=False)
@@ -51,5 +28,4 @@ class WorkOrder(db.Model):
     bill_to_customer = db.Column(db.Boolean, default=False, nullable=False)
     maintenance_notes = db.Column(db.String(1000), unique=False, nullable=True)
     status = db.Column(db.String(250), unique=False, nullable=False)
-    # property_id = db.Column(db.Integer, db.ForeignKey('property.id'))
-    # location_id = db.Column(db.Integer, db.ForeignKey('location.id'))
+    
