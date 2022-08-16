@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
@@ -15,15 +15,20 @@ export const ViewWorkOrder = () => {
       return fetchData;
     }
     fetchWorkOrder(params.id);
-  });
+  }, []);
 
   if (currentWorkOrder == null) {
     return <h1>Loading Work Order Data...</h1>;
+  } else {
+    return (
+      <div className="col text-center">
+        {currentWorkOrder.title}
+        {currentWorkOrder.description}
+
+        <Link to="/">
+          <button className="btn btn-primary w-100">Main Menu</button>
+        </Link>
+      </div>
+    );
   }
-  return (
-    <div>
-      {currentWorkOrder.title}
-      {currentWorkOrder.description}
-    </div>
-  );
 };
