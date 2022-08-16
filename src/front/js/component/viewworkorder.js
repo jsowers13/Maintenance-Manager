@@ -22,6 +22,13 @@ export const ViewWorkOrder = () => {
   } else {
     return (
       <div className="col text-center">
+        <header>
+          <span className="float-start">
+            <i class="fa-solid fa-chevron-left"></i>Open Work Orders
+          </span>
+          <span>{currentWorkOrder.id}</span>
+          <span className="float-end">Edit</span>
+        </header>
         {currentWorkOrder.title}
         {currentWorkOrder.description}
 
