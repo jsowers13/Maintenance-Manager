@@ -2,8 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import { AddWorkOrder } from "./addworkorder";
+import { MyWorkOrders } from "./myWorkOrders";
 
 export const LandingPage = () => {
+  const { store, actions } = useContext(Context);
+
   return (
     <div>
       <ul
@@ -97,7 +100,7 @@ export const LandingPage = () => {
           role="tabpanel"
           aria-labelledby="pills-myWO-tab"
         >
-          My Work Order Content
+          <MyWorkOrders />
         </div>
         <div
           className="tab-pane fade"

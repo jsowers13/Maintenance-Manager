@@ -16,6 +16,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
       token: JSON.parse(sessionStorage.getItem("token")) || [],
       activeUser: JSON.parse(sessionStorage.getItem("activeUser")) || null,
+      workOrders: [],
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -162,6 +163,38 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
         } catch (error) {
           return "Unable to Create Work Order", error;
+        }
+      },
+      getAllWorkOrders: async () => {
+        try {
+          const resp = await fetch(process.env.BACKEND_URL + "/api/workorder");
+
+          if (resp.ok) {
+            const data = resp.json();
+            setStore({ workOrders: data });
+            console.log(getStore().workOrders);
+            return data;
+          } else {
+            throw "Something went wrong with fetch";
+          }
+        } catch (error) {
+          return "Unable to retrieve work order data", error;
+        }
+      },
+      getWorkOrderByID: async (id) => {
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/workorder/" + id
+          );
+
+          if (resp.ok) {
+            const data = resp.json();
+            return data;
+          } else {
+            throw "Something went wrong with fetch";
+          }
+        } catch (error) {
+          return "Unable to retrieve work order data", error;
         }
       },
     },
