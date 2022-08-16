@@ -197,6 +197,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           return "Unable to retrieve work order data", error;
         }
       },
+      getCompletedWorkOrders: async () => {
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/workorder/complete"
+          );
+
+          if (resp.ok) {
+            const data = resp.json();
+            return data;
+          } else {
+            throw "Something went wrong with fetch";
+          }
+        } catch (error) {
+          return "Unable to retrieve completed work orders", error;
+        }
+      },
     },
   };
 };

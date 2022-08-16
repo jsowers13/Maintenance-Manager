@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import { AddWorkOrder } from "./addworkorder";
 import { MyWorkOrders } from "./myWorkOrders";
+import { CompletedWorkOrders } from "./completedworkorders";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -53,7 +54,7 @@ export const LandingPage = () => {
             aria-controls="pills-unassigned"
             aria-selected="false"
           >
-            Unassigned
+            Open Work Orders
           </button>
         </li>
         <li className="nav-item" role="presentation">
@@ -136,7 +137,7 @@ export const LandingPage = () => {
                 aria-controls="pills-unassigned"
                 aria-selected="false"
               >
-                Unassigned
+                Open Work Orders
               </button>
             </li>
             <li className="nav-item" role="presentation">
@@ -183,7 +184,7 @@ export const LandingPage = () => {
           role="tabpanel"
           aria-labelledby="pills-unassigned-tab"
         >
-          Unassigned Content
+          Open Work Orders Content
         </div>
         <div
           className="tab-pane fade"
@@ -192,6 +193,7 @@ export const LandingPage = () => {
           aria-labelledby="pills-completed-tab"
         >
           Completed Content
+          <CompletedWorkOrders />
         </div>
         <div
           className="tab-pane fade"

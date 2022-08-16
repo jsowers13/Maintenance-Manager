@@ -123,3 +123,10 @@ def create_work_order():
 
     return jsonify(work_order.serialize()), 201
 
+@api.route('/workorder/complete', methods=['GET'])
+def get_completed_work_orders():
+    complete = WorkOrder.query.filter_by(status='completed')
+
+    complete_list = list(map(lambda workorder: workorder.serialize(), complete))
+
+    return jsonify(complete_list), 200
