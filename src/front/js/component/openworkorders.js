@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
+import { WorkOrderBanner } from "./workorderbanner";
 
 export const OpenWorkOrders = () => {
   const { store, actions } = useContext(Context);
@@ -42,62 +43,10 @@ export const OpenWorkOrders = () => {
   } else {
     return (
       <div>
-        <div>
-          <h5 className="text-decoration-underline">Call</h5>
-          {callList.map((workorder, index) => {
-            return (
-              <Link to={"workorder/" + workorder.id} key={index}>
-                <div className="text-center">
-                  <span className="float-start">{workorder.id}</span>
-                  <span>{workorder.title}</span>
-                </div>
-                <hr />
-              </Link>
-            );
-          })}
-        </div>
-        <div>
-          <h5 className="text-decoration-underline">Scheduled</h5>
-          {scheduledList.map((workorder, index) => {
-            return (
-              <Link to={"workorder/" + workorder.id} key={index}>
-                <div className="text-center">
-                  <span className="float-start">{workorder.id}</span>
-                  <span>{workorder.title}</span>
-                </div>
-                <hr />
-              </Link>
-            );
-          })}
-        </div>
-        <div>
-          <h5 className="text-decoration-underline">On-Hold</h5>
-          {onHoldList.map((workorder, index) => {
-            return (
-              <Link to={"workorder/" + workorder.id} key={index}>
-                <div className="text-center">
-                  <span className="float-start">{workorder.id}</span>
-                  <span>{workorder.title}</span>
-                </div>
-                <hr />
-              </Link>
-            );
-          })}
-        </div>
-        <div>
-          <h5 className="text-decoration-underline">In-Progress</h5>
-          {inProgressList.map((workorder, index) => {
-            return (
-              <Link to={"workorder/" + workorder.id} key={index}>
-                <div className="text-center">
-                  <span classname="float-start">{workorder.id}</span>
-                  <span>{workorder.title}</span>
-                </div>
-                <hr />
-              </Link>
-            );
-          })}
-        </div>
+        <WorkOrderBanner datatitle={"Call"} dataset={callList} />
+        <WorkOrderBanner datatitle={"Scheduled"} dataset={scheduledList} />
+        <WorkOrderBanner datatitle={"On-Hold"} dataset={onHoldList} />
+        <WorkOrderBanner datatitle={"In-Progress"} dataset={inProgressList} />
       </div>
     );
   }
