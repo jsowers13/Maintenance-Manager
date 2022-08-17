@@ -43,49 +43,57 @@ export const OpenWorkOrders = () => {
     return (
       <div>
         <div>
+          <h5 className="text-decoration-underline">Call</h5>
           {callList.map((workorder, index) => {
             return (
               <Link to={"workorder/" + workorder.id} key={index}>
-                <div>
-                  <span>{workorder.id}</span>
+                <div className="text-center">
+                  <span className="float-start">{workorder.id}</span>
                   <span>{workorder.title}</span>
                 </div>
+                <hr />
               </Link>
             );
           })}
         </div>
         <div>
+          <h5 className="text-decoration-underline">Scheduled</h5>
           {scheduledList.map((workorder, index) => {
             return (
               <Link to={"workorder/" + workorder.id} key={index}>
-                <div>
-                  <span>{workorder.id}</span>
+                <div className="text-center">
+                  <span className="float-start">{workorder.id}</span>
                   <span>{workorder.title}</span>
                 </div>
+                <hr />
               </Link>
             );
           })}
         </div>
         <div>
+          <h5 className="text-decoration-underline">On-Hold</h5>
           {onHoldList.map((workorder, index) => {
             return (
               <Link to={"workorder/" + workorder.id} key={index}>
-                <div>
-                  <span>{workorder.id}</span>
+                <div className="text-center">
+                  <span className="float-start">{workorder.id}</span>
                   <span>{workorder.title}</span>
                 </div>
+                <hr />
               </Link>
             );
           })}
         </div>
         <div>
+          <h5 className="text-decoration-underline">In-Progress</h5>
           {inProgressList.map((workorder, index) => {
             return (
               <Link to={"workorder/" + workorder.id} key={index}>
-                <div>
-                  <span>{workorder.id}</span>
+                <div className="text-center">
+                  <span classname="float-start">{workorder.id}</span>
                   <span>{workorder.title}</span>
                 </div>
+                <hr />
               </Link>
             );
           })}
