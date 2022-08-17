@@ -2,11 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
+import "../../styles/workorderbanner.css";
 
 export const WorkOrderBanner = (props) => {
   return (
     <div>
-      <h5 className="text-decoration-underline">{props.datatitle}</h5>
+      <span className="headerfont fw-bold">{props.datatitle}</span>
+      <hr />
       {props.dataset.map((workorder, index) => {
         return (
           <Link
@@ -15,20 +17,19 @@ export const WorkOrderBanner = (props) => {
             key={index}
           >
             <div className="row">
-              <div className="col">
-                <p className="my-0">{workorder.id}</p>
-                <p className="my-0">Location</p>
-                <p className="my-0">{workorder.title}</p>
-              </div>
-              <div className="col text-center">
-                <p className="my-0">Property</p>
-                <p className="my-0">{workorder.category}</p>
-              </div>
-              <div className="col">
-                <span className="float-end">
-                  <i class="fa-solid fa-circle-chevron-right text-primary my-3 fs-1"></i>
-                </span>
-              </div>
+              <span className="col tinyfont">{workorder.id}</span>
+              <span className="col tinyfont">property</span>
+              <span className="col tinyfont">placeholder</span>
+            </div>
+            <div className="row">
+              <span className="col tinyfont">Location</span>
+              <span className="col tinyfont">{workorder.category}</span>
+              <span className="col tinyfont">
+                <i class="fa-solid fa-circle-chevron-right text-primary float-end"></i>
+              </span>
+            </div>
+            <div className="row">
+              <span className="col tinyfont">{workorder.title}</span>
             </div>
 
             <hr />

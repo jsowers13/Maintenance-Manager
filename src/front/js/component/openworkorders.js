@@ -44,9 +44,9 @@ export const OpenWorkOrders = () => {
     return (
       <div>
         <WorkOrderBanner datatitle={"Call"} dataset={callList} />
+        <WorkOrderBanner datatitle={"In-Progress"} dataset={inProgressList} />
         <WorkOrderBanner datatitle={"Scheduled"} dataset={scheduledList} />
         <WorkOrderBanner datatitle={"On-Hold"} dataset={onHoldList} />
-        <WorkOrderBanner datatitle={"In-Progress"} dataset={inProgressList} />
       </div>
     );
   }
