@@ -27,7 +27,8 @@ export const LandingPage = () => {
             aria-controls="pills-mainMenu"
             aria-selected="true"
           >
-            Main Menu
+            <i className="fa-solid fa-house"></i>
+            <p className="fs-6 my-0">Main Menu</p>
           </button>
         </li>
         <li className="nav-item" role="presentation">
