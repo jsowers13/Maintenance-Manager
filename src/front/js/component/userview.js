@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AddWorkOrder } from "./addworkorder";
 import { MyWorkOrders } from "./myWorkOrders";
 import { CompletedWorkOrders } from "./completedworkorders";
+import { OpenWorkOrders } from "./openworkorders";
 
 export const LandingPage = () => {
   const { store, actions } = useContext(Context);
@@ -184,7 +185,7 @@ export const LandingPage = () => {
           role="tabpanel"
           aria-labelledby="pills-unassigned-tab"
         >
-          Open Work Orders Content
+          <OpenWorkOrders />
         </div>
         <div
           className="tab-pane fade"

@@ -213,6 +213,21 @@ const getState = ({ getStore, getActions, setStore }) => {
           return "Unable to retrieve completed work orders", error;
         }
       },
+      getWorkOrdersByStatus: async (status) => {
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/workorder/" + status
+          );
+          if (resp.ok) {
+            const data = resp.json();
+            return data;
+          } else {
+            throw "Something went wrong with fetch";
+          }
+        } catch (error) {
+          return `Unable to retrieve ${status} work orders`, error;
+        }
+      },
     },
   };
 };

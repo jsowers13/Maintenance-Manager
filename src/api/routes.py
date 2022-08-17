@@ -98,7 +98,7 @@ def get_all_work_orders():
 
     return jsonify(all_work_orders), 200
 
-@api.route('/workorder/<id>', methods=['GET'])
+@api.route('/workorder/<int:id>', methods=['GET'])
 def get_work_order_by_id(id):
     work_order = WorkOrder.query.get(id)
 
@@ -130,3 +130,11 @@ def get_completed_work_orders():
     complete_list = list(map(lambda workorder: workorder.serialize(), complete))
 
     return jsonify(complete_list), 200
+
+@api.route('/workorder/<string:status>', methods=['GET'])
+def get_work_orders_by_status(status):
+    to_display = WorkOrder.query.filter_by(status=status)
+
+    display_list = list(map(lambda workorder: workorder.serialize(), to_display))
+
+    return jsonify(display_list), 200

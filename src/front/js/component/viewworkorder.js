@@ -8,6 +8,11 @@ export const ViewWorkOrder = () => {
   const params = useParams();
   const [currentWorkOrder, setCurrentWorkOrder] = useState(null);
 
+  const previouspage = () => {
+    history.back();
+    return true;
+  };
+
   useEffect(() => {
     async function fetchWorkOrder(id) {
       const fetchData = await actions.getWorkOrderByID(id);
@@ -23,8 +28,12 @@ export const ViewWorkOrder = () => {
     return (
       <div className="col text-center">
         <header>
-          <span className="float-start">
-            <i class="fa-solid fa-chevron-left"></i>Open Work Orders
+          <span
+            type="button"
+            className="float-start"
+            onClick={() => previouspage()}
+          >
+            <i className="fa-solid fa-chevron-left"></i>Open Work Orders
           </span>
           <span>{currentWorkOrder.id}</span>
           <span className="float-end">Edit</span>
