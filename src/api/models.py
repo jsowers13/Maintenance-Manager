@@ -2,10 +2,16 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+user_workorder = db.Table('user_workorder',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('workorder_id', db.Integer, db.ForeignKey('workorder.id'))
+)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+    work_orders = db.relationship('Workorder', secondary=user_workorder, backref='users')
     
 
     def __repr__(self):
@@ -18,7 +24,7 @@ class User(db.Model):
             # do not serialize the password, its a security breach
         }
 
-class WorkOrder(db.Model):
+class Workorder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), unique=False, nullable=False)
     description = db.Column(db.String(250), unique=False, nullable=False)

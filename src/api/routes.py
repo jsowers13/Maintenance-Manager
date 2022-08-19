@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, WorkOrder
+from api.models import db, User, Workorder
 # from api.models import Property, Location
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token, JWTManager
@@ -93,14 +93,14 @@ def get_active_user():
 
 @api.route('/workorder', methods=['GET'])
 def get_all_work_orders():
-    work_orders = WorkOrder.query.all()
+    work_orders = Workorder.query.all()
     all_work_orders= list(map(lambda workorder: workorder.serialize(), work_orders))
 
     return jsonify(all_work_orders), 200
 
 @api.route('/workorder/<int:id>', methods=['GET'])
 def get_work_order_by_id(id):
-    work_order = WorkOrder.query.get(id)
+    work_order = Workorder.query.get(id)
 
     return jsonify(work_order.serialize()), 200
 
@@ -116,7 +116,7 @@ def create_work_order():
     maintenance_notes = body["maintenance_notes"]
     status = body["status"]
 
-    work_order = WorkOrder(title=title, description=description, category=category, access_notes=access_notes, entry_allowed=entry_allowed, bill_to_customer=bill_to_customer, maintenance_notes=maintenance_notes, status=status)
+    work_order = Workorder(title=title, description=description, category=category, access_notes=access_notes, entry_allowed=entry_allowed, bill_to_customer=bill_to_customer, maintenance_notes=maintenance_notes, status=status)
 
     db.session.add(work_order)
     db.session.commit()
@@ -125,7 +125,7 @@ def create_work_order():
 
 @api.route('/workorder/complete', methods=['GET'])
 def get_completed_work_orders():
-    complete = WorkOrder.query.filter_by(status='completed')
+    complete = Workorder.query.filter_by(status='completed')
 
     complete_list = list(map(lambda workorder: workorder.serialize(), complete))
 
@@ -133,7 +133,7 @@ def get_completed_work_orders():
 
 @api.route('/workorder/<string:status>', methods=['GET'])
 def get_work_orders_by_status(status):
-    to_display = WorkOrder.query.filter_by(status=status)
+    to_display = Workorder.query.filter_by(status=status)
 
     display_list = list(map(lambda workorder: workorder.serialize(), to_display))
 
