@@ -7,11 +7,19 @@ user_workorder = db.Table('user_workorder',
     db.Column('workorder_id', db.Integer, db.ForeignKey('workorder.id'))
 )
 
+user_property = db.Table('user_property',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('property_id', db.Integer, db.ForeignKey('property.id'))
+)
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+    is_system_admin = db.Column(db.Boolean, default=False, nullable=False)
+    is_property_admin = db.Column(db.Boolean, default=False, nullable=False)
     work_orders = db.relationship('Workorder', secondary=user_workorder, backref='users')
+    properties = db.relationship('Property', secondary=user_property, backref='users')
     
 
     def __repr__(self):
@@ -47,4 +55,10 @@ class Workorder(db.Model):
             "maintenance_notes": self.maintenance_notes,
             "status": self.status
         }
+
+class Property(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), unique=True, nullable=False)
+    address = db.Column(db.String(1000), unique=True, nullable=True)
+    phone_number = db.Column(db.String(25), unique=True, nullable=True)
     

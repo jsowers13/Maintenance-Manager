@@ -48,6 +48,8 @@ def create_user():
     print("/////////////////////", body)
     email = body["email"]
     password = body["password"]
+    is_system_admin = body["is_system_admin"]
+    is_property_admin = body["is_property_admin"]
     
     user_exists = User.query.filter_by(email=email).first()
     print("/////////////////////", user_exists)
