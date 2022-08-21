@@ -16,8 +16,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    is_system_admin = db.Column(db.Boolean, default=False, nullable=False)
-    is_property_admin = db.Column(db.Boolean, default=False, nullable=False)
+    is_system_admin = db.Column(db.Boolean, default=False, nullable=True)
+    is_property_admin = db.Column(db.Boolean, default=False, nullable=True)
     work_orders = db.relationship('Workorder', secondary=user_workorder, backref='users')
     properties = db.relationship('Property', secondary=user_property, backref='users')
     

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import { Headerbar } from "./headerbar";
 
 export const ViewWorkOrder = () => {
   const { store, actions } = useContext(Context);
@@ -27,7 +28,7 @@ export const ViewWorkOrder = () => {
   } else {
     return (
       <div className="col text-center">
-        <header>
+        {/* <header>
           <span
             type="button"
             className="float-start"
@@ -37,7 +38,14 @@ export const ViewWorkOrder = () => {
           </span>
           <span>{currentWorkOrder.id}</span>
           <span className="float-end">Edit</span>
-        </header>
+        </header> */}
+        <Headerbar
+          leftlink="/"
+          lefttitle="Open Work Orders"
+          pagetitle={currentWorkOrder.id}
+          rightlink="/"
+          righttitle="Edit"
+        />
         {currentWorkOrder.title}
         {currentWorkOrder.description}
 

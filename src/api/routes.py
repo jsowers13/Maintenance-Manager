@@ -48,15 +48,14 @@ def create_user():
     print("/////////////////////", body)
     email = body["email"]
     password = body["password"]
-    is_system_admin = body["is_system_admin"]
-    is_property_admin = body["is_property_admin"]
+    
     
     user_exists = User.query.filter_by(email=email).first()
     print("/////////////////////", user_exists)
     if user_exists is not None:
         raise APIException("user already exists", 400)
 
-    user = User(email=email, password=password) 
+    user = User(email=email, password=password, is_system_admin=False, is_property_admin=False) 
     
     db.session.add(user)
     db.session.commit()
@@ -140,3 +139,7 @@ def get_work_orders_by_status(status):
     display_list = list(map(lambda workorder: workorder.serialize(), to_display))
 
     return jsonify(display_list), 200
+
+
+
+
