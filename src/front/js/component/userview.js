@@ -11,7 +11,7 @@ export const LandingPage = () => {
 
   return (
     <div>
-      <ul
+      {/* <ul
         className="nav nav-pills nav-justified mb-3"
         id="pills-tab"
         role="tablist"
@@ -87,7 +87,7 @@ export const LandingPage = () => {
             New Work Order
           </button>
         </li>
-      </ul>
+      </ul> */}
       <div className="tab-content" id="pills-tabContent">
         <div
           className="tab-pane fade show active"
@@ -207,6 +207,83 @@ export const LandingPage = () => {
           <AddWorkOrder />
         </div>
       </div>
+      <ul
+        className="nav nav-pills nav-justified mb-3"
+        id="pills-tab"
+        role="tablist"
+      >
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link active"
+            id="pills-mainMenu-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-mainMenu"
+            type="button"
+            role="tab"
+            aria-controls="pills-mainMenu"
+            aria-selected="true"
+          >
+            <i className="fa-solid fa-house"></i>
+            <p className="fs-6 my-0">Main Menu</p>
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="pills-myWO-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-myWO"
+            type="button"
+            role="tab"
+            aria-controls="pills-myWO"
+            aria-selected="false"
+          >
+            My Work Orders
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="pills-unassigned-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-unassigned"
+            type="button"
+            role="tab"
+            aria-controls="pills-unassigned"
+            aria-selected="false"
+          >
+            Open Work Orders
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="pills-completed-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-completed"
+            type="button"
+            role="tab"
+            aria-controls="pills-completed"
+            aria-selected="false"
+          >
+            Completed
+          </button>
+        </li>
+        <li className="nav-item" role="presentation">
+          <button
+            className="nav-link"
+            id="pills-newWO-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#pills-newWO"
+            type="button"
+            role="tab"
+            aria-controls="pills-newWO"
+            aria-selected="false"
+          >
+            New Work Order
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };
