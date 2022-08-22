@@ -25,7 +25,7 @@ export const WorkOrderBanner = (props) => {
               <span className="col tinyfont">Location</span>
               <span className="col tinyfont">{workorder.category}</span>
               <span className="col tinyfont">
-                <i class="fa-solid fa-circle-chevron-right text-primary float-end"></i>
+                <i className="fa-solid fa-circle-chevron-right text-primary float-end"></i>
               </span>
             </div>
             <div className="row">

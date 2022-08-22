@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import { WorkOrderBanner } from "./workorderbanner";
+import { Headerbar } from "./headerbar";
 
 export const OpenWorkOrders = () => {
   const { store, actions } = useContext(Context);
@@ -43,6 +44,13 @@ export const OpenWorkOrders = () => {
   } else {
     return (
       <div>
+        <Headerbar
+          leftlink="/"
+          lefttitle="Menu"
+          pagetitle="Open Orders"
+          rightlink="/"
+          righttitle="Sort By"
+        />
         <WorkOrderBanner datatitle={"Call"} dataset={callList} />
         <WorkOrderBanner datatitle={"In-Progress"} dataset={inProgressList} />
         <WorkOrderBanner datatitle={"Scheduled"} dataset={scheduledList} />
