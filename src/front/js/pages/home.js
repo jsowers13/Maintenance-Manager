@@ -4,6 +4,7 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { Login } from "../component/login";
 import { LandingPage } from "../component/userview";
+import { MainMenu } from "../component/mainmenu";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -13,7 +14,7 @@ export const Home = () => {
       <div className="card col">
         <div className="card-header text-center">Maintenance Manager</div>
         <div className="card-body">
-          {store.activeUser ? <Login /> : <LandingPage />}
+          {store.activeUser ? <Login /> : <MainMenu />}
         </div>
       </div>
 
