@@ -50,6 +50,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         //reset the global store
         setStore({ demo: demo });
       },
+      getAllUsers: async () => {
+        try {
+          const resp = await fetch(`${process.env.BACKEND_URL}/api/user`);
+
+          if (resp.ok) {
+            const data = await resp.json();
+            return data;
+          } else {
+            throw "Something went wrong with user fetch";
+          }
+        } catch (error) {
+          throw ("Unable to retrieve user data", error);
+        }
+      },
       getActiveUser: async (email) => {
         try {
           const res = await fetch(
