@@ -15,7 +15,9 @@ import { MyWorkOrders } from "./component/myWorkOrders";
 import { OpenWorkOrders } from "./component/openworkorders";
 import { CompletedWorkOrders } from "./component/completedworkorders";
 import { AddWorkOrder } from "./component/addworkorder";
-import { AdminView } from "./component/adminview";
+import { AdminViewWorkOrders } from "./component/adminviewworkorders";
+import { AdminHome } from "./component/adminhome";
+import { AdminViewUsers } from "./component/adminviewUsers";
 
 //create your first component
 const Layout = () => {
@@ -41,7 +43,12 @@ const Layout = () => {
               path="/completedworkorders"
             />
             <Route element={<AddWorkOrder />} path="/newworkorder" />
-            <Route element={<AdminView />} path="/admin/view" />
+            <Route element={<AdminHome />} path="/admin/" />
+            <Route
+              element={<AdminViewWorkOrders />}
+              path="/admin/view/workorders"
+            />
+            <Route element={<AdminViewUsers />} path="/admin/view/users" />
           </Routes>
           <Footerbar />
         </ScrollToTop>
