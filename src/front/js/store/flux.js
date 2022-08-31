@@ -242,6 +242,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           return `Unable to retrieve ${status} work orders`, error;
         }
       },
+      getWorkOrdersByCategory: async (category) => {
+        try {
+          const resp = await fetch(
+            process.env.BACKEND_URL + "/api/workorder/" + category
+          );
+
+          if (resp.ok) {
+            const data = resp.json();
+            return data;
+          } else {
+            throw "Something went wrong with fetch";
+          }
+        } catch (error) {
+          return `Unable to retrieve ${category} work orders`, error;
+        }
+      },
     },
   };
 };
