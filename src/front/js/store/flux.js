@@ -230,7 +230,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       getWorkOrdersByStatus: async (status) => {
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/workorder/" + status
+            process.env.BACKEND_URL + "/api/workorder/status/" + status
           );
           if (resp.ok) {
             const data = resp.json();
@@ -245,11 +245,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       getWorkOrdersByCategory: async (category) => {
         try {
           const resp = await fetch(
-            process.env.BACKEND_URL + "/api/workorder/" + category
+            process.env.BACKEND_URL + "/api/workorder/category/" + category
           );
+          console.log(category);
 
           if (resp.ok) {
             const data = resp.json();
+            console.log(data);
             return data;
           } else {
             throw "Something went wrong with fetch";

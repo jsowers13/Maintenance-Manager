@@ -6,17 +6,25 @@ export const AdminViewWorkOrders = () => {
   const [workorderData, setWorkorderData] = useState(null);
   const [userData, setUserData] = useState([]);
 
+  async function fetchWorkOrders() {
+    const data = await actions.getAllWorkOrders();
+    console.log("work order data", data);
+    setWorkorderData(data);
+    console.log("work order data variable", data);
+    return data;
+  }
   useEffect(() => {
-    async function fetchWorkOrders() {
-      const data = await actions.getAllWorkOrders();
-      console.log("work order data", data);
-      setWorkorderData(data);
-      console.log("work order data variable", data);
-      return data;
-    }
-
     fetchWorkOrders();
   }, []);
+
+  async function handleCategoryFilter(category) {
+    // e.preventDefault();
+    console.log(category);
+    const data = await actions.getWorkOrdersByCategory(category);
+    setWorkorderData(data);
+    console.log("work order data by category", data);
+    return data;
+  }
 
   if (workorderData === null) {
     return <h1>Loading data, please wait...</h1>;
@@ -47,27 +55,58 @@ export const AdminViewWorkOrders = () => {
                 >
                   Category
                 </span>
+
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="categoryDropdown"
                 >
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value=""
+                      onClick={() => fetchWorkOrders()}
+                    >
+                      All
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="electrical"
+                      onClick={() => handleCategoryFilter("electrical")}
+                    >
                       Electric
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value={"plumbing"}
+                      onClick={() => handleCategoryFilter("plumbing")}
+                    >
                       Plumbing
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="hvac"
+                      onClick={() => handleCategoryFilter("hvac")}
+                    >
                       HVAC
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="carpentry"
+                      onClick={() => handleCategoryFilter("carpentry")}
+                    >
                       Carpentry
                     </a>
                   </li>
@@ -87,32 +126,32 @@ export const AdminViewWorkOrders = () => {
                 </span>
                 <ul className="dropdown-menu" aria-labelledby="statusDropdown">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#" value="call">
                       Call
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#" value="cancelled">
                       Cancelled
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#" value="scheduled">
                       Scheduled
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#" value="on-hold">
                       On Hold
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#" value="in-progress">
                       In Progress
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="#" value="completed">
                       Completed
                     </a>
                   </li>
