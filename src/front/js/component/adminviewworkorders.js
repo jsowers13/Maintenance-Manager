@@ -26,6 +26,14 @@ export const AdminViewWorkOrders = () => {
     return data;
   }
 
+  async function handleStatusFilter(status) {
+    console.log(status);
+    const data = await actions.getWorkOrdersByStatus(status);
+    setWorkorderData(data);
+    console.log("work order data by status", data);
+    return data;
+  }
+
   if (workorderData === null) {
     return <h1>Loading data, please wait...</h1>;
   } else {
@@ -126,32 +134,84 @@ export const AdminViewWorkOrders = () => {
                 </span>
                 <ul className="dropdown-menu" aria-labelledby="statusDropdown">
                   <li>
-                    <a className="dropdown-item" href="#" value="call">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value=""
+                      onClick={() => fetchWorkOrders()}
+                    >
+                      All
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="call"
+                      onClick={() => {
+                        handleStatusFilter("call");
+                      }}
+                    >
                       Call
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" value="cancelled">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="cancelled"
+                      onClick={() => {
+                        handleStatusFilter("cancelled");
+                      }}
+                    >
                       Cancelled
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" value="scheduled">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="scheduled"
+                      onClick={() => {
+                        handleStatusFilter("scheduled");
+                      }}
+                    >
                       Scheduled
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" value="on-hold">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="on-hold"
+                      onClick={() => {
+                        handleStatusFilter("on-hold");
+                      }}
+                    >
                       On Hold
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" value="in-progress">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="in-progress"
+                      onClick={() => {
+                        handleStatusFilter("in-progress");
+                      }}
+                    >
                       In Progress
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#" value="completed">
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                      value="completed"
+                      onClick={() => {
+                        handleStatusFilter("completed");
+                      }}
+                    >
                       Completed
                     </a>
                   </li>
